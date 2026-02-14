@@ -1,12 +1,11 @@
 // 1. Setup and Initial Code Structure
 document.addEventListener('DOMContentLoaded', () => {
-    // Select the form and the feedback division
+    // Form and Feedback Division Selection
     const form = document.getElementById('registration-form');
     const feedbackDiv = document.getElementById('form-feedback');
 
     // 2. Form Submission and Event Prevention
     form.addEventListener('submit', (event) => {
-        // Prevent the default form submission (stops page refresh)
         event.preventDefault();
 
         // 3. Input Retrieval and Trimming
@@ -18,40 +17,33 @@ document.addEventListener('DOMContentLoaded', () => {
         let isValid = true;
         const messages = [];
 
-        // Username Validation: Minimum 3 characters
+        // Username Validation
         if (username.length < 3) {
             isValid = false;
             messages.push("Username must be at least 3 characters long.");
         }
 
-        // Email Validation: Must contain '@' and '.'
+        // Email Validation
         if (!email.includes('@') || !email.includes('.')) {
             isValid = false;
-            messages.push("Please enter a valid email address (must include '@' and '.').");
+            messages.push("Email must contain both '@' and '.' characters.");
         }
 
-        // Password Validation: Minimum 8 characters
+        // Password Validation
         if (password.length < 8) {
             isValid = false;
             messages.push("Password must be at least 8 characters long.");
         }
 
         // 5. Displaying Feedback
-        feedbackDiv.style.display = "block"; // Make the feedback div visible
+        feedbackDiv.style.display = "block";
 
         if (isValid) {
-            // Success Case
             feedbackDiv.textContent = "Registration successful!";
-            feedbackDiv.style.color = "#28a745"; // Success Green
-            feedbackDiv.style.backgroundColor = "#d4edda"; // Light Green background
-            
-            // Optional: Clear the form on success
-            form.reset();
+            feedbackDiv.style.color = "#28a745";
         } else {
-            // Failure Case
             feedbackDiv.innerHTML = messages.join('<br>');
-            feedbackDiv.style.color = "#dc3545"; // Error Red
-            feedbackDiv.style.backgroundColor = "#f8d7da"; // Light Red background
+            feedbackDiv.style.color = "#dc3545";
         }
     });
 });
